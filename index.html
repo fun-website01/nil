@@ -3,82 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Under Maintenance</title>
+    <title>Website Under Maintenance | ARD Bio Tech</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap');
+        
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-pink: #ff00ff;
+            --dark-space: #0a0a1a;
+            --cyber-purple: #4a00e0;
+        }
         
         body {
             font-family: 'Orbitron', sans-serif;
-            background-color: #0a0a1a;
+            background-color: var(--dark-space);
             overflow: hidden;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            color: white;
+            margin: 0;
+            perspective: 1000px;
         }
         
         .maintenance-container {
             position: relative;
-            width: 80%;
-            max-width: 800px;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
-            background: rgba(10, 10, 30, 0.8);
-            backdrop-filter: blur(10px);
-            border: 2px solid #00ffff;
-            animation: pulse 2s infinite alternate;
+            width: 90%;
+            max-width: 900px;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 0 50px rgba(0, 243, 255, 0.3);
+            background: rgba(10, 10, 30, 0.7);
+            backdrop-filter: blur(12px);
+            border: 2px solid var(--neon-blue);
+            animation: pulse 3s infinite alternate;
             text-align: center;
             z-index: 10;
+            transform-style: preserve-3d;
+            transform: rotateX(5deg);
         }
         
         @keyframes pulse {
             0% {
-                box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+                box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+                border-color: var(--neon-blue);
+            }
+            50% {
+                box-shadow: 0 0 60px rgba(255, 0, 255, 0.4);
+                border-color: var(--neon-pink);
             }
             100% {
-                box-shadow: 0 0 50px rgba(0, 255, 255, 0.8);
+                box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+                border-color: var(--neon-blue);
             }
         }
         
         .title {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: bold;
-            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            letter-spacing: 4px;
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            border-radius: 3px;
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: titleUnderline 3s infinite alternate;
+        }
+        
+        @keyframes titleUnderline {
+            0% {
+                transform: scaleX(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scaleX(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scaleX(0);
+                opacity: 0;
+            }
         }
         
         .subtitle {
-            color: #00ffff;
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            color: var(--neon-blue);
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
             letter-spacing: 2px;
+            font-family: 'Montserrat', sans-serif;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
         }
         
         .progress-container {
             width: 100%;
             height: 20px;
-            background: rgba(0, 255, 255, 0.1);
+            background: rgba(0, 243, 255, 0.1);
             border-radius: 10px;
-            margin: 2rem 0;
+            margin: 2.5rem 0;
             overflow: hidden;
-            border: 1px solid #00ffff;
+            border: 1px solid var(--neon-blue);
+            position: relative;
         }
         
         .progress-bar {
             height: 100%;
             width: 0;
-            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
             border-radius: 10px;
             animation: progress 5s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                rgba(255,255,255,0) 0%, 
+                rgba(255,255,255,0.3) 50%, 
+                rgba(255,255,255,0) 100%);
+            animation: shine 2s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
         
         @keyframes progress {
@@ -89,33 +165,55 @@
         
         .particle {
             position: absolute;
-            background: rgba(0, 255, 255, 0.5);
+            background: rgba(0, 243, 255, 0.6);
             border-radius: 50%;
             pointer-events: none;
+            filter: blur(1px);
         }
         
         .tech-icons {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
+            gap: 3rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
         }
         
         .tech-icon {
-            font-size: 2.5rem;
-            color: #00ffff;
-            animation: float 3s ease-in-out infinite;
+            font-size: 3rem;
+            color: var(--neon-blue);
+            animation: float 4s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            position: relative;
+        }
+        
+        .tech-icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--neon-blue);
+            opacity: 0;
+            animation: pulseIcon 4s infinite;
+        }
+        
+        @keyframes pulseIcon {
+            0%, 100% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 0.7; transform: scale(1.2); }
         }
         
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
         }
         
-        .tech-icon:nth-child(1) { animation-delay: 0s; }
-        .tech-icon:nth-child(2) { animation-delay: 0.5s; }
-        .tech-icon:nth-child(3) { animation-delay: 1s; }
-        .tech-icon:nth-child(4) { animation-delay: 1.5s; }
+        .tech-icon:nth-child(1) { animation-delay: 0s; color: var(--neon-blue); }
+        .tech-icon:nth-child(2) { animation-delay: 0.5s; color: var(--neon-pink); }
+        .tech-icon:nth-child(3) { animation-delay: 1s; color: #00ff88; }
+        .tech-icon:nth-child(4) { animation-delay: 1.5s; color: #ff7700; }
         
         .grid-overlay {
             position: absolute;
@@ -124,11 +222,12 @@
             width: 100%;
             height: 100%;
             background: 
-                linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
-            background-size: 30px 30px;
+                linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
             pointer-events: none;
             z-index: -1;
+            opacity: 0.5;
         }
         
         .binary-rain {
@@ -139,14 +238,17 @@
             height: 100%;
             overflow: hidden;
             z-index: -1;
-            opacity: 0.3;
+            opacity: 0.2;
         }
         
         .binary-digit {
             position: absolute;
-            color: #00ffff;
-            font-size: 1rem;
+            color: var(--neon-blue);
+            font-size: 1.2rem;
             animation: fall linear infinite;
+            font-family: 'Orbitron', sans-serif;
+            opacity: 0.7;
+            text-shadow: 0 0 5px rgba(0, 243, 255, 0.5);
         }
         
         @keyframes fall {
@@ -154,29 +256,195 @@
                 transform: translateY(100vh);
             }
         }
+        
+        .countdown {
+            font-size: 1.5rem;
+            color: var(--neon-blue);
+            margin: 1.5rem 0;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        
+        .countdown span {
+            display: inline-block;
+            min-width: 50px;
+            text-align: center;
+            background: rgba(0, 243, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 0 5px;
+            border: 1px solid var(--neon-blue);
+        }
+        
+        .footer-text {
+            font-family: 'Montserrat', sans-serif;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            line-height: 1.6;
+        }
+        
+        .cyber-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid var(--neon-blue);
+            pointer-events: none;
+            animation: rotate infinite linear;
+            opacity: 0.3;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .cyber-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+            pointer-events: none;
+            animation: lineGlow 3s infinite alternate;
+            transform-origin: left;
+        }
+        
+        @keyframes lineGlow {
+            0% { opacity: 0.3; transform: scaleX(0.5); }
+            100% { opacity: 0.8; transform: scaleX(1); }
+        }
+        
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                rgba(0, 243, 255, 0.2) 50%,
+                transparent
+            );
+            animation: scan 8s linear infinite;
+            z-index: 100;
+            pointer-events: none;
+        }
+        
+        @keyframes scan {
+            0% { top: -10px; }
+            100% { top: 100%; }
+        }
+        
+        .glitch {
+            position: relative;
+        }
+        
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-space);
+        }
+        
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--neon-pink);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 var(--neon-blue);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim-2 2s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(32px, 9999px, 78px, 0); }
+            10% { clip: rect(8px, 9999px, 28px, 0); }
+            20% { clip: rect(45px, 9999px, 79px, 0); }
+            30% { clip: rect(25px, 9999px, 58px, 0); }
+            40% { clip: rect(60px, 9999px, 85px, 0); }
+            50% { clip: rect(5px, 9999px, 15px, 0); }
+            60% { clip: rect(98px, 9999px, 115px, 0); }
+            70% { clip: rect(48px, 9999px, 65px, 0); }
+            80% { clip: rect(22px, 9999px, 39px, 0); }
+            90% { clip: rect(70px, 9999px, 85px, 0); }
+            100% { clip: rect(30px, 9999px, 46px, 0); }
+        }
+        
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(65px, 9999px, 119px, 0); }
+            10% { clip: rect(10px, 9999px, 30px, 0); }
+            20% { clip: rect(85px, 9999px, 140px, 0); }
+            30% { clip: rect(15px, 9999px, 40px, 0); }
+            40% { clip: rect(70px, 9999px, 115px, 0); }
+            50% { clip: rect(30px, 9999px, 60px, 0); }
+            60% { clip: rect(108px, 9999px, 138px, 0); }
+            70% { clip: rect(48px, 9999px, 78px, 0); }
+            80% { clip: rect(62px, 9999px, 92px, 0); }
+            90% { clip: rect(20px, 9999px, 40px, 0); }
+            100% { clip: rect(60px, 9999px, 80px, 0); }
+        }
+        
+        .contact-info {
+            margin-top: 2rem;
+            font-family: 'Montserrat', sans-serif;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+        
+        .contact-info a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .contact-info a:hover {
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+        }
     </style>
 </head>
 <body>
     <div class="grid-overlay"></div>
     <div class="binary-rain" id="binaryRain"></div>
+    <div class="scanline"></div>
     
     <div class="maintenance-container">
-        <h1 class="title">Website Under Maintenance</h1>
-        <p class="subtitle">Our systems are being upgraded for an enhanced experience</p>
+        <div class="glitch" data-text="WEBSITE UNDER MAINTENANCE">
+            <h1 class="title">WEBSITE UNDER MAINTENANCE</h1>
+        </div>
+        
+        <p class="subtitle">ARD Bio Tech is undergoing scheduled upgrades to bring you an enhanced experience with our sustainable organic fertilizer solutions.</p>
         
         <div class="tech-icons">
-            <i class="tech-icon fas fa-server"></i>
-            <i class="tech-icon fas fa-microchip"></i>
-            <i class="tech-icon fas fa-robot"></i>
-            <i class="tech-icon fas fa-rocket"></i>
+            <i class="tech-icon fas fa-leaf" title="Sustainable Solutions"></i>
+            <i class="tech-icon fas fa-recycle" title="Recycling Process"></i>
+            <i class="tech-icon fas fa-flask" title="Research & Development"></i>
+            <i class="tech-icon fas fa-seedling" title="Organic Growth"></i>
         </div>
         
         <div class="progress-container">
             <div class="progress-bar"></div>
         </div>
         
-        <p class="text-cyan-400 text-sm mb-4">Estimated completion: <span id="countdown">00:15:00</span></p>
-        <p class="text-gray-400 text-xs">Thank you for your patience. Our team is working hard to bring you something amazing!</p>
+        <div class="countdown">
+            <span id="hours">00</span>:
+            <span id="minutes">15</span>:
+            <span id="seconds">00</span>
+        </div>
+        
+        <p class="footer-text">Our team is working diligently to complete the maintenance. Thank you for your patience as we prepare to showcase our innovative waste-to-fertilizer technology.</p>
+        
+        <div class="contact-info">
+            For urgent inquiries: <br>
+            <a href="mailto:support@ardbiotech.in">support@ardbiotech.in</a> | 
+            <a href="tel:+919345792477">+91 93457 92477</a>
+        </div>
     </div>
 
     <script>
@@ -184,14 +452,14 @@
         function createBinaryRain() {
             const container = document.getElementById('binaryRain');
             const digits = '01';
-            const columns = Math.floor(window.innerWidth / 20);
+            const columns = Math.floor(window.innerWidth / 25);
             
-            for (let i = 0; i < columns; i++) {
+            for (let i = 0; i < columns * 3; i++) {
                 const digit = document.createElement('div');
                 digit.className = 'binary-digit';
-                digit.style.left = `${i * 20}px`;
-                digit.style.top = `${Math.random() * -100}px`;
-                digit.style.animationDuration = `${5 + Math.random() * 10}s`;
+                digit.style.left = `${(i % columns) * 25}px`;
+                digit.style.top = `${Math.random() * -500}px`;
+                digit.style.animationDuration = `${3 + Math.random() * 10}s`;
                 digit.style.animationDelay = `${Math.random() * 5}s`;
                 digit.textContent = digits.charAt(Math.floor(Math.random() * digits.length));
                 container.appendChild(digit);
@@ -200,20 +468,20 @@
         
         // Create floating particles
         function createParticles() {
-            const particleCount = 30;
+            const particleCount = 50;
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
-                const size = Math.random() * 5 + 2;
+                const size = Math.random() * 6 + 2;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
                 
                 particle.style.left = `${Math.random() * 100}vw`;
                 particle.style.top = `${Math.random() * 100}vh`;
                 
-                const duration = Math.random() * 10 + 10;
+                const duration = Math.random() * 15 + 10;
                 particle.style.animation = `float ${duration}s ease-in-out infinite`;
                 particle.style.opacity = Math.random() * 0.5 + 0.1;
                 
@@ -221,17 +489,60 @@
             }
         }
         
+        // Create cyber circles
+        function createCyberCircles() {
+            const circleCount = 5;
+            
+            for (let i = 0; i < circleCount; i++) {
+                const circle = document.createElement('div');
+                circle.className = 'cyber-circle';
+                
+                const size = Math.random() * 300 + 100;
+                circle.style.width = `${size}px`;
+                circle.style.height = `${size}px`;
+                
+                circle.style.left = `${Math.random() * 100}vw`;
+                circle.style.top = `${Math.random() * 100}vh`;
+                
+                const duration = Math.random() * 30 + 20;
+                circle.style.animationDuration = `${duration}s`;
+                
+                document.body.appendChild(circle);
+            }
+        }
+        
+        // Create cyber lines
+        function createCyberLines() {
+            const lineCount = 8;
+            
+            for (let i = 0; i < lineCount; i++) {
+                const line = document.createElement('div');
+                line.className = 'cyber-line';
+                
+                const length = Math.random() * 300 + 100;
+                line.style.width = `${length}px`;
+                
+                line.style.left = `${Math.random() * 100}vw`;
+                line.style.top = `${Math.random() * 100}vh`;
+                
+                line.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                document.body.appendChild(line);
+            }
+        }
+        
         // Countdown timer
         function startCountdown() {
             let timeLeft = 15 * 60; // 15 minutes in seconds
-            const countdownElement = document.getElementById('countdown');
             
             const timer = setInterval(() => {
                 timeLeft--;
                 
                 if (timeLeft <= 0) {
                     clearInterval(timer);
-                    countdownElement.textContent = "00:00:00";
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
                     return;
                 }
                 
@@ -239,8 +550,9 @@
                 const minutes = Math.floor((timeLeft % 3600) / 60);
                 const seconds = timeLeft % 60;
                 
-                countdownElement.textContent = 
-                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
             }, 1000);
         }
         
@@ -248,7 +560,17 @@
         window.onload = function() {
             createBinaryRain();
             createParticles();
+            createCyberCircles();
+            createCyberLines();
             startCountdown();
+            
+            // Add mouse move effect for container
+            document.addEventListener('mousemove', (e) => {
+                const container = document.querySelector('.maintenance-container');
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                container.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
         };
     </script>
 </body>
